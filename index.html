@@ -53,7 +53,7 @@
   /* ── Title slide ── */
   .title-slide h1 { font-size: 2.2em; margin-bottom: 0.15em; }
   .title-slide .author { font-family: var(--r-main-font); font-size: 0.7em; color: #000; margin-top: 1.5em; }
-  .title-slide .affiliation { font-family: var(--r-main-font); font-size: 0.55em; color: #000; font-weight: 300; }
+  .title-slide .affiliation { font-family: var(--r-main-font); font-size: 0.55em; color: #000; font-weight: 400; }
 
   /* ── Divider slides ── */
   .divider { background: var(--heading) !important; }
@@ -238,11 +238,13 @@
 <!-- SLIDE 7: TRANSITION -->
 <section class="top-align">
   <h2>Would you ask similar questions to a...</h2>
-  <p style="font-size:1.2em; margin-top:1.2em;">
-    <strong>Teacher?</strong><br>
-    <span class="fragment"><strong>Advisor?</strong></span><br>
-    <span class="fragment"><strong>Boss?</strong></span>
-  </p>
+  <div style="text-align:left; max-width:80%; margin:1.2em auto;">
+    <ul>
+      <li>Teacher?</li>
+      <li class="fragment">Advisor?</li>
+      <li class="fragment">Boss?</li>
+    </ul>
+  </div>
 </section>
 
 <!-- SLIDE 8: Questions are important (title only) -->
@@ -254,7 +256,9 @@
 <section class="top-align">
   <h2>Questions are important</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
+    <ul>
+      <li>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</li>
+    </ul>
   </div>
 </section>
 
@@ -262,8 +266,10 @@
 <section class="top-align">
   <h2>Questions are important</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
-    <p>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</p>
+    <ul>
+      <li>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</li>
+      <li>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</li>
+    </ul>
   </div>
 </section>
 
@@ -271,9 +277,11 @@
 <section class="top-align">
   <h2>Questions are important</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
-    <p>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</p>
-    <p>For learning: by asking questions, children can resolve misunderstandings, reduce uncertainty, and build causal knowledge that helps them make sense of the world.</p>
+    <ul>
+      <li>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</li>
+      <li>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</li>
+      <li>For learning: by asking questions, children can resolve misunderstandings, reduce uncertainty, and build causal knowledge that helps them make sense of the world.</li>
+    </ul>
     <p class="ref">(Jirout &amp; Klahr, 2011; Park et al., 2025)</p>
   </div>
 </section>
@@ -282,10 +290,12 @@
 <section class="top-align">
   <h2>But questions have a social cost</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>Posing a question can signal to others that you do not know something.</p>
-    <p class="fragment">When children enter school, they begin to ask fewer questions.</p>
-    <p class="fragment">By around age 7, children begin to associate asking for help with appearing less competent.</p>
-    <p class="fragment">Children may therefore avoid asking questions if they feel they are being judged, even when asking would help them learn.</p>
+    <ul>
+      <li>Posing a question can signal to others that you do not know something.</li>
+      <li class="fragment">When children enter school, they begin to ask fewer questions.</li>
+      <li class="fragment">By around age 7, children begin to associate asking for help with appearing less competent.</li>
+      <li class="fragment">Children may therefore avoid asking questions if they feel they are being judged, even when asking would help them learn.</li>
+    </ul>
     <p class="fragment ref">(Tizard &amp; Hughes, 1984; Engel, 2011; Harter, 2012; Elkind &amp; Bowen, 1979; Somerville et al., 2013; Leary &amp; Kowalski, 1990; Good &amp; Shaw, 2022)</p>
   </div>
 </section>
@@ -317,9 +327,11 @@
 <section class="top-align">
   <h2>Method</h2>
   <div style="text-align:left; max-width:75%; margin:1.5em auto;">
-    <p><strong>1. Science Lessons</strong> Children listen to challenging lessons about four body organs.</p>
-    <p><strong>2. Question-Asking</strong> Children ask questions to Vera (AI Chatbot or Human Teacher).</p>
-    <p><strong>3. Assessment</strong> Learning test and appraisal questions.</p>
+    <ul>
+      <li>Science Lessons — children listen to challenging lessons about four body organs.</li>
+      <li>Question-Asking — children ask questions to Vera (AI Chatbot or Human Teacher).</li>
+      <li>Assessment — learning test and appraisal questions.</li>
+    </ul>
   </div>
 </section>
 
@@ -363,13 +375,13 @@
   <div style="display:flex; justify-content:center; gap:50px; margin-top:1em;">
     <!-- AI Chatbot condition -->
     <div style="text-align:center; width:42%;">
-      <p style="font-size:0.9em; font-weight:500; color:var(--ai); margin-bottom:0.5em;">AI Chatbot</p>
-      <p style="font-size:0.65em; line-height:1.5; color:#333; text-align:left;">Now you ask questions about the lesson to: <em>Vera</em> who is an <span style="color:var(--ai); font-weight:500;">AI Computer Program</span> developed from BrightRiver Lab in Massachusetts. It was developed for kids around your age and help them with their science questions.</p>
+      <p style="color:var(--ai); margin-bottom:0.5em;">AI Chatbot</p>
+      <p style="font-size:0.75em; line-height:1.5; color:#333; text-align:left;">Now you ask questions about the lesson to: <em>Vera</em> who is an <span style="color:var(--ai);">AI Computer Program</span> developed from BrightRiver Lab in Massachusetts. It was developed for kids around your age and help them with their science questions.</p>
     </div>
     <!-- Human Teacher condition -->
     <div style="text-align:center; width:42%;">
-      <p style="font-size:0.9em; font-weight:500; color:var(--teacher); margin-bottom:0.5em;">Human Teacher</p>
-      <p style="font-size:0.65em; line-height:1.5; color:#333; text-align:left;">Now you can ask questions about the lesson to: <em>Vera</em> who is a <span style="color:var(--teacher); font-weight:500;">Teacher</span> from BrightRiver Elementary School in Massachusetts. She works with kids around your age and helps them with their science questions.</p>
+      <p style="color:var(--teacher); margin-bottom:0.5em;">Human Teacher</p>
+      <p style="font-size:0.75em; line-height:1.5; color:#333; text-align:left;">Now you can ask questions about the lesson to: <em>Vera</em> who is a <span style="color:var(--teacher);">Teacher</span> from BrightRiver Elementary School in Massachusetts. She works with kids around your age and helps them with their science questions.</p>
     </div>
   </div>
 </section>
@@ -450,10 +462,12 @@
 <section class="top-align">
   <h2>Measures</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>Number of Questions</p>
-    <p class="fragment">Learning Score</p>
-    <p class="fragment">Appraisals</p>
-    <p class="fragment" style="margin-top:1em; font-size:0.8em; color:#888; font-style:italic;">While not analyzed for this preliminary analysis, we also measure the type of questions children ask, such as fact-based vs. explanation-seeking questions, and whether questions are related to the lesson or not.</p>
+    <ul>
+      <li>Number of Questions</li>
+      <li class="fragment">Learning Score</li>
+      <li class="fragment">Appraisals</li>
+    </ul>
+    <p class="fragment ref" style="margin-top:1em;">While not analyzed for this preliminary analysis, we also measure the type of questions children ask, such as fact-based vs. explanation-seeking questions, and whether questions are related to the lesson or not.</p>
   </div>
 </section>
 
@@ -462,14 +476,16 @@
   <h2>Preliminary Results</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
     <p>We present data from 33 participants (target: 100).</p>
-    <p class="fragment">AI Chatbot condition: n = 16</p>
-    <p class="fragment">Human Teacher condition: n = 17</p>
+    <ul>
+      <li class="fragment">AI Chatbot condition: n = 16</li>
+      <li class="fragment">Human Teacher condition: n = 17</li>
+    </ul>
   </div>
 </section>
 
 <!-- SLIDE 17b: Number of Questions -->
 <section class="top-align">
-  <h2>Children in the AI condition<br>asked <strong>more questions</strong></h2>
+  <h2>Children in the AI condition asked more questions</h2>
   <div style="display:flex; justify-content:center; margin-top:0.5em;">
     <img src="plot_questions.png" style="height:320px; width:auto;">
   </div>
@@ -478,7 +494,7 @@
 
 <!-- SLIDE 17c: Learning Score -->
 <section class="top-align">
-  <h2>Children in the AI condition<br><strong>scored higher</strong> in learning measure</h2>
+  <h2>Children in the AI condition scored higher in learning</h2>
   <div style="display:flex; justify-content:center; margin-top:0.5em;">
     <img src="plot_learning.png" style="height:320px; width:auto;">
   </div>
@@ -487,7 +503,7 @@
 
 <!-- SLIDE 17d: Comfort Score -->
 <section class="top-align">
-  <h2>Children in the AI condition<br>reported <strong>higher score</strong> for comfort</h2>
+  <h2>Children in the AI condition reported higher comfort</h2>
   <div style="display:flex; justify-content:center; margin-top:0.5em;">
     <img src="comfort.png" style="height:320px; width:auto;">
   </div>
@@ -498,9 +514,11 @@
 <section class="top-align">
   <h2>Other Results</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>No other appraisal measures reached statistical significance between conditions.</p>
-    <p class="fragment">Mediation analysis showed no significant indirect effect of questions on learning (ACME = &minus;0.46, 95% CI [&minus;1.64, 1.18], <em>p</em> = .51). The direct effect of condition on learning remained significant (<em>p</em> = .027).</p>
-    <p class="fragment">Age was positively correlated with learning (<em>r</em> = .56, <em>p</em> &lt; .001) but not with questions asked (<em>r</em> = .04, <em>p</em> = .83).</p>
+    <ul>
+      <li>No other appraisal measures reached statistical significance between conditions.</li>
+      <li class="fragment">Mediation analysis showed no significant indirect effect of questions on learning (ACME = &minus;0.46, 95% CI [&minus;1.64, 1.18], <em>p</em> = .51). The direct effect of condition on learning remained significant (<em>p</em> = .027).</li>
+      <li class="fragment">Age was positively correlated with learning (<em>r</em> = .56, <em>p</em> &lt; .001) but not with questions asked (<em>r</em> = .04, <em>p</em> = .83).</li>
+    </ul>
   </div>
 </section>
 
@@ -508,9 +526,11 @@
 <section class="top-align">
   <h2>Discussion</h2>
   <div style="text-align:left; max-width:80%; margin:0 auto;">
-    <p>These results do not necessarily mean that AI is a better teacher.</p>
-    <p class="fragment">Rather, AI may support learning by reducing the social costs of revealing what one doesn't know.</p>
-    <p class="fragment">While this study focuses on children and question-asking, these findings may extend to other contexts governed by the same social forces, such as shame and fear of judgment.</p>
+    <ul>
+      <li>These results do not necessarily mean that AI is a better teacher.</li>
+      <li class="fragment">Rather, AI may support learning by reducing the social costs of revealing what one doesn't know.</li>
+      <li class="fragment">While this study focuses on children and question-asking, these findings may extend to other contexts governed by the same social forces, such as shame and fear of judgment.</li>
+    </ul>
   </div>
 </section>
 
