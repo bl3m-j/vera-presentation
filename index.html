@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vera Study — Lab Meeting</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.css">
+<style>
+  :root {
+    --r-background-color: #fff;
+    --r-main-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --r-heading-font: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    --r-main-font-size: 34px;
+    --heading: #000;
+    --body: #000;
+    --ai: #2c3e8f;
+    --teacher: #c97b3d;
+    --bg: #f8f7f5;
+  }
+
+  /* ── Base ── */
+  .reveal { font-weight: 400; }
+
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: var(--r-heading-font);
+    color: var(--heading);
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .reveal h1 { font-size: 2.2em; line-height: 1.15; }
+  .reveal h2 { font-size: 1.6em; margin-bottom: 0.6em; }
+
+  .reveal p, .reveal li, .reveal td, .reveal th {
+    font-family: var(--r-main-font);
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: var(--body);
+    font-weight: 300;
+  }
+
+  .reveal .slide-number { font-family: var(--r-main-font); font-size: 14px; color: #999; }
+  .reveal .progress { color: var(--ai); height: 3px; }
+  .reveal section { padding: 20px; }
+
+  /* ── Accents ── */
+  .ai { color: var(--ai); font-weight: 600; }
+  .teacher { color: var(--teacher); font-weight: 600; }
+  .reveal strong { font-weight: 450; }
+
+  /* ── Title slide ── */
+  .title-slide h1 { font-size: 2.2em; margin-bottom: 0.15em; }
+  .title-slide .author { font-family: var(--r-main-font); font-size: 0.7em; color: #000; margin-top: 1.5em; }
+  .title-slide .affiliation { font-family: var(--r-main-font); font-size: 0.55em; color: #000; font-weight: 300; }
+
+  /* ── Divider slides ── */
+  .divider { background: var(--heading) !important; }
+  .divider h2 { color: #fff !important; font-size: 2em; }
+  .divider p { color: rgba(255,255,255,0.85) !important; font-size: 0.9em !important; }
+  .divider .ai { color: #7eaaff; }
+  .divider .teacher { color: #e8b07a; }
+
+  /* ── Content boxes ── */
+  .insight-box {
+    background: var(--bg);
+    border-left: 4px solid var(--ai);
+    padding: 0.6em 1.2em;
+    margin: 0.8em auto;
+    max-width: 85%;
+    text-align: left;
+    border-radius: 0 6px 6px 0;
+  }
+  .insight-box p { margin: 0; font-size: 0.85em; }
+
+  .reveal blockquote {
+    background: var(--bg);
+    border-left: 4px solid var(--ai);
+    padding: 0.8em 1.5em;
+    margin: 0.5em auto;
+    max-width: 85%;
+    font-style: italic;
+    font-family: var(--r-heading-font);
+    font-size: 1em;
+    color: #000;
+    box-shadow: none;
+  }
+  .reveal blockquote cite {
+    display: block; font-size: 0.55em; color: #888;
+    font-style: italic; margin-top: 0.5em;
+    font-family: var(--r-main-font);
+  }
+
+  /* ── Lists ── */
+  .reveal ul { list-style: none; padding-left: 0; }
+  .reveal ul li { padding-left: 1.4em; position: relative; margin-bottom: 0.4em; }
+  .reveal ul li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 8px; height: 8px; background: var(--ai); border-radius: 50%;
+  }
+
+  /* ── Meme slides ── */
+  .meme-grid { display: flex; align-items: flex-start; justify-content: center; gap: 30px; width: 100%; }
+  .meme-donkey { width: 280px; border-radius: 12px; box-shadow: 0 3px 16px rgba(0,0,0,0.12); flex-shrink: 0; }
+  .meme-comments { display: flex; flex-direction: column; gap: 12px; flex-shrink: 1; }
+  .meme-comments img { height: 52px; width: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: block; }
+  .comment-wrap { position: relative; display: inline-block; }
+  .comment-wrap .name-blur {
+    position: absolute; top: 0; left: 0; width: 55%; height: 42%;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.4); border-radius: 8px 0 0 0; pointer-events: none;
+  }
+
+  /* ── Bar charts ── */
+  .chart-container { display: flex; justify-content: center; align-items: flex-end; gap: 60px; margin: 1em auto; height: 280px; padding-bottom: 10px; }
+  .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar {
+    width: 140px; border-radius: 6px 6px 0 0; display: flex; align-items: flex-start;
+    justify-content: center; padding-top: 12px;
+    font-family: var(--r-main-font); font-weight: 700; font-size: 22px; color: #fff;
+  }
+  .bar-ai { background: var(--ai); }
+  .bar-teacher { background: var(--teacher); }
+  .bar-label { font-family: var(--r-main-font); font-size: 16px; font-weight: 500; color: var(--body); margin-top: 6px; }
+  .stat-note { font-family: var(--r-main-font); font-size: 0.6em; color: #000; margin-top: 1.2em; }
+
+  /* ── Method flow ── */
+  .method-flow { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 1em auto; flex-wrap: wrap; }
+  .method-box {
+    background: var(--bg); border: 2px solid #ddd; border-radius: 12px;
+    padding: 18px 24px; text-align: center; min-width: 160px; max-width: 200px;
+  }
+  .method-box.hl-ai { border-color: var(--ai); background: #eef0f9; }
+  .method-box.hl-teacher { border-color: var(--teacher); background: #fdf5ed; }
+  .method-box h4 { font-family: var(--r-heading-font); font-size: 0.85em; margin: 0 0 6px 0; color: var(--heading); }
+  .method-box p { font-size: 0.6em; margin: 0; color: #000; }
+  .arrow { font-size: 2em; color: #ccc; }
+
+  /* ── Condition labels ── */
+  .cond-label {
+    display: inline-block; border-radius: 8px; padding: 8px 20px; margin: 4px;
+    font-family: var(--r-main-font); font-size: 0.75em; font-weight: 500;
+  }
+  .cond-ai { background: #eef0f9; border: 2px solid var(--ai); color: var(--ai); }
+  .cond-teacher { background: #fdf5ed; border: 2px solid var(--teacher); color: var(--teacher); }
+
+  /* ── Two columns ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; text-align: left; }
+
+  /* ── Table ── */
+  .appraisal-table { width: 80%; margin: 0.8em auto; border-collapse: collapse; font-family: var(--r-main-font); font-size: 0.65em; }
+  .appraisal-table th { background: var(--bg); padding: 10px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #ddd; color: var(--heading); }
+  .appraisal-table td { padding: 8px 16px; border-bottom: 1px solid #eee; color: #000; }
+  .appraisal-table .sig { color: #000; font-weight: 600; }
+  .appraisal-table .ns { color: #000; }
+
+  /* ── SVG mediation ── */
+  .med-svg { width: 700px; height: 260px; }
+
+  /* ── Thank you ── */
+  .thankyou h1 { font-size: 3em; }
+
+  /* ── Top-aligned slides ── */
+  .reveal section.top-align { display: flex; flex-direction: column; justify-content: flex-start; padding-top: 80px; height: 100%; }
+
+  /* ── Ref line ── */
+  .reveal p.ref, .reveal .ref { font-size: 0.55em !important; color: #888 !important; margin-top: 1.2em; font-style: italic; }
+  .reveal cite { font-size: 0.55em; color: #888; font-style: italic; display: block; margin-top: 0.5em; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1: TITLE -->
+<section class="title-slide">
+  <h1>Children ask more questions when they think their teacher is AI</h1>
+  <div style="width:60px; height:3px; background:var(--ai); margin:0.8em auto;"></div>
+  <p class="author">Blerim Jashari</p>
+  <p class="affiliation">Ilona Bass, Tomer Ullman, Elizabeth Bonawitz, Candice M. Mills</p>
+</section>
+
+<!-- SLIDE 2: MEME - just the donkey -->
+<section>
+  <div class="meme-grid">
+    <img src="5ba2f137-38f2-4663-a929-7dd8f15c5626.jpeg" class="meme-donkey" alt="Explain it like a donkey">
+  </div>
+</section>
+
+<!-- SLIDE 3: MEME + 1 comment -->
+<section>
+  <div class="meme-grid">
+    <img src="5ba2f137-38f2-4663-a929-7dd8f15c5626.jpeg" class="meme-donkey" alt="Explain it like a donkey">
+    <div class="meme-comments">
+      <div class="comment-wrap"><img src="4f24f5bd-41c4-4d52-9158-722c5e74a3c5.jpeg" alt="Like never opened a book"><div class="name-blur"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: MEME + 2 comments -->
+<section>
+  <div class="meme-grid">
+    <img src="5ba2f137-38f2-4663-a929-7dd8f15c5626.jpeg" class="meme-donkey" alt="Explain it like a donkey">
+    <div class="meme-comments">
+      <div class="comment-wrap"><img src="4f24f5bd-41c4-4d52-9158-722c5e74a3c5.jpeg" alt="Like never opened a book"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="57459127-b4af-4fc4-9b90-fb3b551f52ae.jpeg" alt="Like a 5th grader"><div class="name-blur"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: MEME + 3 comments -->
+<section>
+  <div class="meme-grid">
+    <img src="5ba2f137-38f2-4663-a929-7dd8f15c5626.jpeg" class="meme-donkey" alt="Explain it like a donkey">
+    <div class="meme-comments">
+      <div class="comment-wrap"><img src="4f24f5bd-41c4-4d52-9158-722c5e74a3c5.jpeg" alt="Like never opened a book"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="57459127-b4af-4fc4-9b90-fb3b551f52ae.jpeg" alt="Like a 5th grader"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="86ddaea0-193a-4091-9ddd-9cc783f3fb0f.jpeg" alt="Simple wording"><div class="name-blur"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: MEME + all 4 comments -->
+<section>
+  <div class="meme-grid">
+    <img src="5ba2f137-38f2-4663-a929-7dd8f15c5626.jpeg" class="meme-donkey" alt="Explain it like a donkey">
+    <div class="meme-comments">
+      <div class="comment-wrap"><img src="4f24f5bd-41c4-4d52-9158-722c5e74a3c5.jpeg" alt="Like never opened a book"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="57459127-b4af-4fc4-9b90-fb3b551f52ae.jpeg" alt="Like a 5th grader"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="86ddaea0-193a-4091-9ddd-9cc783f3fb0f.jpeg" alt="Simple wording"><div class="name-blur"></div></div>
+      <div class="comment-wrap"><img src="eb5b97fe-a3c7-42ed-84f7-1a4b37051e62.jpeg" alt="5 years old, a newborn"><div class="name-blur"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: TRANSITION -->
+<section class="top-align">
+  <h2>Would you ask similar questions to a...</h2>
+  <p style="font-size:1.2em; margin-top:1.2em;">
+    <strong>Teacher?</strong><br>
+    <span class="fragment"><strong>Advisor?</strong></span><br>
+    <span class="fragment"><strong>Boss?</strong></span>
+  </p>
+</section>
+
+<!-- SLIDE 8: Questions are important (title only) -->
+<section class="top-align">
+  <h2>Questions are important</h2>
+</section>
+
+<!-- SLIDE 9: + scientific inquiry -->
+<section class="top-align">
+  <h2>Questions are important</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10: + everyday life -->
+<section class="top-align">
+  <h2>Questions are important</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
+    <p>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</p>
+  </div>
+</section>
+
+<!-- SLIDE 11: + drive learning -->
+<section class="top-align">
+  <h2>Questions are important</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>For scientific inquiry: which can be understood as a systematic process of asking questions and seeking answers.</p>
+    <p>For everyday life: we ask questions to navigate decisions, understand others, and make sense of new situations.</p>
+    <p>For learning: by asking questions, children can resolve misunderstandings, reduce uncertainty, and build causal knowledge that helps them make sense of the world.</p>
+    <p class="ref">(Jirout &amp; Klahr, 2011; Park et al., 2025)</p>
+  </div>
+</section>
+
+<!-- SLIDE 9: But questions have a cost -->
+<section class="top-align">
+  <h2>But questions have a social cost</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>Posing a question can signal to others that you do not know something.</p>
+    <p class="fragment">When children enter school, they begin to ask fewer questions.</p>
+    <p class="fragment">By around age 7, children begin to associate asking for help with appearing less competent.</p>
+    <p class="fragment">Children may therefore avoid asking questions if they feel they are being judged, even when asking would help them learn.</p>
+    <p class="fragment ref">(Tizard &amp; Hughes, 1984; Engel, 2011; Harter, 2012; Elkind &amp; Bowen, 1979; Somerville et al., 2013; Leary &amp; Kowalski, 1990; Good &amp; Shaw, 2022)</p>
+  </div>
+</section>
+
+<!-- SLIDE 10: Key insight -->
+<section class="top-align">
+  <h2>Judgment requires a judge</h2>
+  <p style="font-size:0.55em; color:#888; margin-top:-0.4em;">&mdash; T. Ullman</p>
+  <div style="margin-top:1.5em;">
+    <div class="fragment" style="margin-top:1.5em;">
+      <p style="font-size:1.05em;">
+        But what if the listener<br><strong>can't judge you</strong> or you <strong>don't care</strong> if it does?
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12: Research question -->
+<section class="top-align">
+  <h2>Research Question</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p style="font-size:1.05em; line-height:1.7;">
+      Do children (ages 7&ndash;12) ask more questions and learn more when they believe they are interacting with an AI chatbot vs. a human teacher?
+    </p>
+  </div>
+</section>
+
+<!-- SLIDE 12b: Existing work -->
+<section class="top-align">
+  <h2>Existing Work</h2>
+  <div style="text-align:left; max-width:85%; margin:0 auto;">
+    <p style="font-size:0.7em; margin-bottom:0.8em;">
+      <strong>Lucas et al. (2014)</strong><br>
+      <em>Question:</em> Does believing you are talking to a computer (vs. a human) change how openly you share?<br>
+      <em>Method:</em> Adults interacted with a virtual human interviewer. Some were told it was automated; others were told a human controlled it.<br>
+      <em>Finding:</em> Those who believed it was a computer reported less fear of being judged, managed their impressions less, and disclosed more openly.
+    </p>
+    <p class="fragment" style="font-size:0.7em;">
+      <strong>Kestin et al. (2025)</strong><br>
+      <em>Question:</em> Can an AI tutor help students learn as much as (or more than) active classroom instruction?<br>
+      <em>Method:</em> RCT with 194 Harvard undergrads in physics. Students either used an AI tutor or attended in-class active learning lessons.<br>
+      <em>Finding:</em> The AI tutor group had over 2&times; the learning gains in less time, and reported higher engagement and motivation.
+    </p>
+  </div>
+</section>
+
+<!-- SLIDE 13: Method overview -->
+<section class="top-align">
+  <h2>Method</h2>
+  <div style="text-align:left; max-width:75%; margin:1.5em auto;">
+    <p><strong>1. Science Lessons</strong> Children listen to challenging lessons about four body organs.</p>
+    <p><strong>2. Question-Asking</strong> Children ask questions to Vera (AI Chatbot or Human Teacher).</p>
+    <p><strong>3. Assessment</strong> Learning test and appraisal questions.</p>
+  </div>
+</section>
+
+<!-- SLIDE 13b: Science lessons -->
+<section class="top-align">
+  <h2>Science Lessons</h2>
+  <div style="text-align:left; max-width:85%; margin:0 auto;">
+    <p>Children listen to intentionally challenging lessons about four body organs:</p>
+  </div>
+  <div style="display:flex; justify-content:center; gap:30px; margin-top:1em; align-items:center;">
+    <div style="text-align:center;">
+      <img src="brain.png" style="height:120px;">
+      <p style="font-size:0.6em; margin-top:0.3em;">Brain</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="heart.png" style="height:120px;">
+      <p style="font-size:0.6em; margin-top:0.3em;">Heart</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="lungs.png" style="height:120px;">
+      <p style="font-size:0.6em; margin-top:0.3em;">Lungs</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="kidneys.png" style="height:120px;">
+      <p style="font-size:0.6em; margin-top:0.3em;">Kidneys</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13c: Kidney story example -->
+<section class="top-align">
+  <h2>Example: The Kidneys</h2>
+  <div style="display:flex; justify-content:center; margin-top:1em;">
+    <img src="kidney-story.png" style="max-height:450px;">
+  </div>
+</section>
+
+<!-- SLIDE 13d: Question-asking phase -->
+<section class="top-align">
+  <h2>Question-Asking Phase</h2>
+  <div style="display:flex; justify-content:center; gap:50px; margin-top:1em;">
+    <!-- AI Chatbot condition -->
+    <div style="text-align:center; width:42%;">
+      <p style="font-size:0.9em; font-weight:500; color:var(--ai); margin-bottom:0.5em;">AI Chatbot</p>
+      <p style="font-size:0.65em; line-height:1.5; color:#333; text-align:left;">Now you ask questions about the lesson to: <em>Vera</em> who is an <span style="color:var(--ai); font-weight:500;">AI Computer Program</span> developed from BrightRiver Lab in Massachusetts. It was developed for kids around your age and help them with their science questions.</p>
+    </div>
+    <!-- Human Teacher condition -->
+    <div style="text-align:center; width:42%;">
+      <p style="font-size:0.9em; font-weight:500; color:var(--teacher); margin-bottom:0.5em;">Human Teacher</p>
+      <p style="font-size:0.65em; line-height:1.5; color:#333; text-align:left;">Now you can ask questions about the lesson to: <em>Vera</em> who is a <span style="color:var(--teacher); font-weight:500;">Teacher</span> from BrightRiver Elementary School in Massachusetts. She works with kids around your age and helps them with their science questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13e: How Vera answers -->
+<section class="top-align">
+  <h2>How Vera Answers</h2>
+  <div style="display:flex; gap:30px; max-width:95%; margin:0 auto; align-items:flex-start;">
+    <!-- Left: kidney story -->
+    <div style="width:40%; flex-shrink:0;">
+      <img src="kidney-story.png" style="width:100%;">
+    </div>
+    <!-- Right: audio examples -->
+    <div style="text-align:left; width:60%;">
+      <p style="font-size:0.65em;">Children believe Vera is responding to them in real time. Behind the scenes, we play pre-recorded answers identical across all participants.</p>
+      <div style="background:#f4f4f4; border-radius:8px; padding:10px 14px; margin:0.4em 0;">
+        <p style="font-size:0.6em; margin-bottom:0.2em;">"What does murky mean?"</p>
+        <audio controls style="width:100%; height:26px;">
+          <source src="murky.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <p class="fragment" style="font-size:0.65em;">If a child asks a question we have not anticipated, we generate it live using a custom GPT, then save it for future participants.</p>
+      <div class="fragment" style="background:#f4f4f4; border-radius:8px; padding:10px 14px; margin:0.4em 0;">
+        <p style="font-size:0.6em; margin-bottom:0.2em;">"Is one lung smaller than the other?"</p>
+        <audio controls style="width:100%; height:26px;">
+          <source src="is%20one%20lung%20smaller%20and%20one%20bigger_.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16: Assessment - Learning questions -->
+<section class="top-align">
+  <h2>Assessment: Learning Questions</h2>
+  <div style="text-align:left; max-width:85%; margin:0 auto;">
+    <p style="font-size:0.85em;">20-item learning test (scored 0&ndash;2 each) assessing three types of understanding. For example, for kidneys:</p>
+  </div>
+  <div style="display:flex; justify-content:center; gap:15px; margin-top:0.8em; flex-wrap:nowrap;">
+    <div style="text-align:center; width:24%;">
+      <img src="assess-kidneys.png" style="width:100%;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">Main function</p>
+    </div>
+    <div class="fragment" style="text-align:center; width:24%;">
+      <img src="assess-reverse-osmosis.png" style="width:100%;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">Scientific terms &amp; analogies</p>
+    </div>
+    <div class="fragment" style="text-align:center; width:24%;">
+      <img src="assess-describe.png" style="width:100%;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">Explain in own words</p>
+    </div>
+    <div class="fragment" style="text-align:center; width:24%;">
+      <img src="assess-saltwater.png" style="width:100%;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">Transfer to new situations</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16b: Assessment - Appraisals -->
+<section class="top-align">
+  <h2>Assessment: Appraisals</h2>
+  <div style="text-align:left; max-width:85%; margin:0 auto;">
+    <p style="font-size:0.85em;">We ask children about their experience with Vera across five dimensions: comfort, ease, understanding, belief/trust, and liking.</p>
+  </div>
+  <div style="display:flex; justify-content:center; gap:20px; margin-top:0.8em; flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <img src="appraisal-comfort.png" style="height:250px;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">Binary response</p>
+    </div>
+    <div class="fragment" style="text-align:center;">
+      <img src="appraisal-scale.png" style="height:250px;">
+      <p style="font-size:0.5em; color:#888; margin-top:0.3em;">3-point scale</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16c: Measures -->
+<section class="top-align">
+  <h2>Measures</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>Number of Questions</p>
+    <p class="fragment">Learning Score</p>
+    <p class="fragment">Appraisals</p>
+    <p class="fragment" style="margin-top:1em; font-size:0.8em; color:#888; font-style:italic;">While not analyzed for this preliminary analysis, we also measure the type of questions children ask, such as fact-based vs. explanation-seeking questions, and whether questions are related to the lesson or not.</p>
+  </div>
+</section>
+
+<!-- SLIDE 17: Results header -->
+<section class="top-align">
+  <h2>Preliminary Results</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>We present data from 33 participants (target: 100).</p>
+    <p class="fragment">AI Chatbot condition: n = 16</p>
+    <p class="fragment">Human Teacher condition: n = 17</p>
+  </div>
+</section>
+
+<!-- SLIDE 17b: Number of Questions -->
+<section class="top-align">
+  <h2>Children in the AI condition<br>asked <strong>more questions</strong></h2>
+  <div style="display:flex; justify-content:center; margin-top:0.5em;">
+    <img src="plot_questions.png" style="height:400px; width:auto;">
+  </div>
+  <p class="stat-note"><em>U</em> = 190, <em>p</em> = .026, <em>r</em> = .40</p>
+</section>
+
+<!-- SLIDE 17c: Learning Score -->
+<section class="top-align">
+  <h2>Children in the AI condition<br><strong>scored higher</strong> in learning measure</h2>
+  <div style="display:flex; justify-content:center; margin-top:0.5em;">
+    <img src="plot_learning.png" style="height:400px; width:auto;">
+  </div>
+  <p class="stat-note"><em>U</em> = 185, <em>p</em> = .040, <em>r</em> = .36</p>
+</section>
+
+<!-- SLIDE 17d: Comfort Score -->
+<section class="top-align">
+  <h2>Children in the AI condition<br>reported <strong>higher score</strong> for comfort</h2>
+  <div style="display:flex; justify-content:center; margin-top:0.5em;">
+    <img src="comfort.png" style="height:400px; width:auto;">
+  </div>
+  <p class="stat-note"><em>U</em> = 178.5, <em>p</em> = .038</p>
+</section>
+
+<!-- SLIDE 17e: Other Results -->
+<section class="top-align">
+  <h2>Other Results</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>No other appraisal measures reached statistical significance between conditions.</p>
+    <p class="fragment">Mediation analysis showed no significant indirect effect of questions on learning (ACME = &minus;0.46, 95% CI [&minus;1.64, 1.18], <em>p</em> = .51). The direct effect of condition on learning remained significant (<em>p</em> = .027).</p>
+    <p class="fragment">Age was positively correlated with learning (<em>r</em> = .56, <em>p</em> &lt; .001) but not with questions asked (<em>r</em> = .04, <em>p</em> = .83).</p>
+  </div>
+</section>
+
+<!-- SLIDE 23: Discussion -->
+<section class="top-align">
+  <h2>Discussion</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <p>These results do not necessarily mean that AI is a better teacher.</p>
+    <p class="fragment">Rather, AI may support learning by reducing the social costs of revealing what one doesn't know.</p>
+    <p class="fragment">While this study focuses on children and question-asking, these findings may extend to other contexts governed by the same social forces, such as shame and fear of judgment.</p>
+  </div>
+</section>
+
+<!-- SLIDE 24: Future Directions -->
+<section class="top-align">
+  <h2>Future Directions</h2>
+  <div style="text-align:left; max-width:80%; margin:0 auto;">
+    <ul>
+      <li>Reach target N = 100.</li>
+      <li class="fragment">Expand to teenagers and adults.</li>
+      <li class="fragment">Does it matter if the AI has human-like attributes versus not?</li>
+      <li class="fragment">How is feedback received differently when it comes from an AI, a teacher, or a peer?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 27: Questions -->
+<section class="thankyou">
+  <h1>Questions?</h1>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  transition: 'none',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  center: true,
+  width: 1200,
+  height: 700,
+  margin: 0.08,
+  controls: true,
+  progress: true,
+  history: true,
+});
+</script>
+</body>
+</html>
